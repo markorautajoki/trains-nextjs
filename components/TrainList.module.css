@@ -1,0 +1,47 @@
+.container {
+    flex-grow: 1;
+}
+
+.title {
+    padding-left: 1em;
+}
+
+.row:first-child {
+    border-top: 1px solid white;
+}
+
+.list {
+    padding: 0;
+}
+
+.row {
+    border-bottom: 1px solid white;
+    padding: 0.5em 0;
+    font-size: 1.5em;
+    list-style: none;
+    display: flex;
+}
+
+.row:nth-child(odd) {
+    background-color: #0f0a37;
+}
+
+.row > div {
+    padding-left: 1em;
+    width: 80px;
+}
+
+.row > div:last-child {
+    flex-grow: 2;
+    text-align: right;
+    padding-right: 1em;
+    width: auto;
+}
+
+.early {
+    background-color: #268231;
+}
+
+.late {
+    background-color: #822720;
+}

@@ -1,0 +1,17 @@
+body {
+  margin: 0;
+  font-family: Arial;
+  color: #ffffff;
+  background-color: #0a0727;
+}
+
+.mainContainer {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.stationSelectorContainer {
+  padding: 1em;
+  border-bottom: 1px solid #ffffff;
+  background-color: #000000;
+}
