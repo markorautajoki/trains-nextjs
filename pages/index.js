@@ -5,8 +5,6 @@ import TrainList, { trainListType } from '../components/TrainList';
 import { getStationsList } from '../service/stations';
 const DEFAULT_STATION = 'TPE';
 
-const REFRESH_INTERVAL = 5000;
-
 const App = ({ stations }) => {
   const [selectedStation, setSelectedStation] = useState(DEFAULT_STATION);
   const [arriving, setArriving] = useState([]);
@@ -14,7 +12,6 @@ const App = ({ stations }) => {
 
   useEffect(() => {
     updateArrivingAndDeparting(selectedStation);
-    setInterval(() => updateArrivingAndDeparting(selectedStation), REFRESH_INTERVAL);
   }, []);
 
   const onStationChange = async (e) => {
@@ -42,6 +39,7 @@ const App = ({ stations }) => {
   };
 
   const updateArrivingAndDeparting = async (selectedStation) => {
+    console.log(selectedStation);
     const { arriving, departing } = await fetch(`api/trains?station=${selectedStation}&category=Long-distance`).then((res) => res.json());
     setArriving(arriving);
     setDeparting(departing);
