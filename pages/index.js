@@ -4,6 +4,7 @@ import TrainList, { trainListType } from '../components/TrainList';
 
 import { getStationsList } from '../service/stations';
 const DEFAULT_STATION = 'TPE';
+const INTERVAL_TIMEOUT = 5000;
 
 const App = ({ stations }) => {
   const [selectedStation, setSelectedStation] = useState(DEFAULT_STATION);
@@ -12,14 +13,14 @@ const App = ({ stations }) => {
 
   useEffect(() => {
     updateArrivingAndDeparting(selectedStation);
-  }, []);
+    const interval = setInterval(() => updateArrivingAndDeparting(selectedStation), INTERVAL_TIMEOUT);
+    return () => clearInterval(interval);
+  }, [selectedStation]);
 
   const onStationChange = async (e) => {
     const selectedStation = e.target.value;
 
     setSelectedStation(selectedStation);
-
-    await updateArrivingAndDeparting(selectedStation);
   };
 
   const renderStationSelectorOption = ({ stationShortCode, stationName }) => {
@@ -39,7 +40,6 @@ const App = ({ stations }) => {
   };
 
   const updateArrivingAndDeparting = async (selectedStation) => {
-    console.log(selectedStation);
     const { arriving, departing } = await fetch(`api/trains?station=${selectedStation}&category=Long-distance`).then((res) => res.json());
     setArriving(arriving);
     setDeparting(departing);
