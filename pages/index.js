@@ -3,6 +3,7 @@ import React, { useEffect, useState } from 'react';
 import TrainList, { trainListType } from '../components/TrainList';
 
 import { getStationsList } from '../service/stations';
+
 const DEFAULT_STATION = 'TPE';
 const INTERVAL_TIMEOUT = 5000;
 
